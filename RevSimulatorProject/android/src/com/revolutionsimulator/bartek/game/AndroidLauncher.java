@@ -1,5 +1,6 @@
 package com.revolutionsimulator.bartek.game;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -12,5 +13,8 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		//initialize(new shooterGame(), config);
+		Intent testIntent = new Intent(this, cashGeneratorActivity.class);
+		startActivity(testIntent);
+
 	}
 }

@@ -2,5 +2,5 @@
 <resources>
 
     <string name="app_name">Revolution Simulator</string>
-
+    <string name="cashDisplay">Cash: </string>
 </resources>
