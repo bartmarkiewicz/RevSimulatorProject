@@ -9,12 +9,21 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-public class cashGeneratorActivity extends Activity {
+public class CashGeneratorActivity extends Activity implements Runnable{
+    private static final String TAG = "CashGeneratorActivity";
+
+    private ArrayList<CashGenerator> listOfGenerators = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cash_generator);
 
+    }
+
+    @Override
+    public void run() {
+        listOfGenerators.add(new CashGenerator(true,0.5, "Get Donations", 0.1, "getDonationsIcon.png"));
     }
 }
