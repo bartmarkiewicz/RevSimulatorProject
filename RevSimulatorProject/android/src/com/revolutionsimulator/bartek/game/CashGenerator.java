@@ -19,10 +19,10 @@ public class CashGenerator {
     private double initialCashGain;
     private String generatorName;
     private String generatorIcon;
-    private int currentProgress;
-    public double cashToBeGained =0;
-    // 0 to 1 -
-    private int timeToGetMoney = 5000;
+    private int currentProgress = 0;
+
+    private int timeToGetMoney;
+    private double generatorUpgradeCost;
 
 
 
@@ -35,8 +35,16 @@ public class CashGenerator {
         return isBought;
     }
 
-    public double getInitialCashGain() {
-        return initialCashGain;
+    public void incrementCurrentProgress(){
+        currentProgress++;
+    }
+
+    public void resetCurrentProgress(){
+        currentProgress = 0;
+    }
+
+    public int getCurrentProgress(){
+        return currentProgress;
     }
 
     public String getGeneratorName() {
@@ -47,16 +55,16 @@ public class CashGenerator {
         return generatorIcon;
     }
 
-    public double getCashToBeGained() {
-        return cashToBeGained;
+    public double getCashGainedWithProgress() {
+        return initialCashGain*generatorLevel*0.50;
     }
 
     public int getGeneratorLevel() {
         return generatorLevel;
     }
 
-    public int getCurrentProgress() {
-        return currentProgress;
+    public int getTimeToGetMoney() {
+        return timeToGetMoney;
     }
 
     public void setCurrentProgress(int currentProgress) {
@@ -70,31 +78,19 @@ public class CashGenerator {
         this.generatorName = generatorName;
         this.timeToGetMoney = timeToGetMoney;
         this.generatorIcon = generatorIcon;
-        this.cashGainedWithProgress = initialCashGain*generatorLevel*0.50;
+        this.cashGainedWithProgress = initialCashGain;
         this.currentProgress = 0;
 
     }
 
     public double upgradeGenerator(double cash, double cost){
-        if (cash>cost){
             generatorLevel++;
             cash = cash-cost;
-        }
         return cash;
     }
 
-    public void getMoney(final double currentCash){
-        CountDownTimer countDownTimer = new CountDownTimer(timeToGetMoney,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                currentProgress = Math.round((millisUntilFinished/timeToGetMoney)/100);
-            }
-
-            @Override
-            public void onFinish() {
-                currentProgress = 0;
-                cashToBeGained += cashGainedWithProgress;
-            }
-        }.start();
+    public double getGeneratorUpgradeCost() {
+        generatorUpgradeCost=generatorLevel*0.20*cashGainedWithProgress;
+        return generatorUpgradeCost;
     }
 }

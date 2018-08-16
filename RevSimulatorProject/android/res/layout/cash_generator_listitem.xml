@@ -49,7 +49,11 @@
         android:layout_height="42dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/buyButton"
-        android:layout_marginTop="11dp" />
+        android:layout_marginTop="11dp"
+        android:max="100"
+        android:progress="0" />
+
+
 
     <TextView
         android:id="@+id/progressBarLabel"
@@ -59,7 +63,6 @@
         android:layout_alignTop="@id/generatorProgressBar"
         android:layout_alignRight="@id/generatorProgressBar"
         android:layout_alignBottom="@id/generatorProgressBar"
-
         android:textAlignment="gravity"
         android:textColor="@android:color/holo_red_dark"/>
 

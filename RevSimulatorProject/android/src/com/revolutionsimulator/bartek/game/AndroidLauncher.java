@@ -10,11 +10,12 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 public class AndroidLauncher extends Activity {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
+        setContentView(R.layout.activitymain);
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		//initialize(new shooterGame(), config);
-		Intent testIntent = new Intent(getApplicationContext(), CashGeneratorActivity.class);
-		startActivity(testIntent);
+		//Intent testIntent = new Intent(getApplicationContext(), CashGeneratorActivity.class);
+		//startActivity(testIntent);
 
 	}
 }
