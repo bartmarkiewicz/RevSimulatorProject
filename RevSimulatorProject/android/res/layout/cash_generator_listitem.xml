@@ -13,31 +13,36 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/generatorLevelTextView"
         android:layout_marginStart="11dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="11sp"
+        android:textColor="@android:color/holo_red_dark"/>
 
     <TextView
         android:id="@+id/generatorNameTextView"
-        android:layout_width="141dp"
-        android:layout_height="49dp"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
         android:layout_below="@+id/generatorProgressBar"
         android:layout_toEndOf="@+id/buyButton"
+        android:gravity="center"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"/>
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:id="@+id/generatorLevelTextView"
-        android:layout_width="53dp"
-        android:layout_height="49dp"
+        android:layout_width="54dp"
+        android:layout_height="48dp"
         android:layout_below="@+id/generatorProgressBar"
+        android:layout_marginStart="-1dp"
         android:layout_toEndOf="@+id/generatorNameTextView"
+        android:gravity="center"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"/>
+        android:textColor="@android:color/holo_red_dark" />
     />
 
     <ImageView
         android:id="@+id/generatorImageView"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/generatorLevelTextView"
         app:srcCompat="@android:color/holo_orange_light" />
@@ -49,21 +54,27 @@
         android:layout_height="42dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/buyButton"
-        android:layout_marginTop="11dp"
         android:max="100"
         android:progress="0" />
 
 
+    <TextView
+        android:id="@+id/progressBarTimerLabel"
+        android:layout_width="126dp"
+        android:layout_height="42dp"
+        android:layout_above="@+id/buyButton"
+        android:layout_alignEnd="@+id/generatorLevelTextView"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
-        android:id="@+id/progressBarLabel"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_alignLeft="@id/generatorProgressBar"
-        android:layout_alignTop="@id/generatorProgressBar"
-        android:layout_alignRight="@id/generatorProgressBar"
-        android:layout_alignBottom="@id/generatorProgressBar"
-        android:textAlignment="gravity"
-        android:textColor="@android:color/holo_red_dark"/>
+        android:id="@+id/progressBarCashLabel"
+        android:layout_width="142dp"
+        android:layout_height="42dp"
+        android:layout_alignStart="@+id/buyButton"
+        android:layout_alignTop="@+id/generatorProgressBar"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark" />
 
 </RelativeLayout>

@@ -14,8 +14,8 @@ public class AndroidLauncher extends Activity {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		//initialize(new shooterGame(), config);
-		//Intent testIntent = new Intent(getApplicationContext(), CashGeneratorActivity.class);
-		//startActivity(testIntent);
+		Intent testIntent = new Intent(getApplicationContext(), CashGeneratorActivity.class);
+		startActivity(testIntent);
 
 	}
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item
+        android:id="@+id/revActionsButton"
+        android:title="Revolutionary Actions" />
+    <item
+        android:id="@+id/commissarsButton"
+        android:title="Commissars" />
+    <item
+        android:id="@+id/upgradesButton"
+        android:title="Upgrades" />
+    <item
+        android:id="@+id/revolutionButton"
+        android:title="The Revolution" />
+    <item
+        android:id="@+id/optionsButton"
+        android:title="Options" />
+    <item
+        android:id="@+id/creditsButton"
+        android:title="Credits" />
+</menu>

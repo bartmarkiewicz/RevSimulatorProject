@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -77,6 +78,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Log.d(TAG, "onBindViewHolder: called.");
         final CashGenerator currentGen = generatorList.get(position);
+        String buyButtonText = "Buy\nx1\n$" + String.format("%.2f", currentGen.getGeneratorUpgradeCost());
+
 
         holder.generatorBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(context, currentGen.getGeneratorName().toString() + " clicked", Toast.LENGTH_LONG).show();
             }
         });
-        holder.generatorBuyButton.setText("Buy\nx1");
+
+        holder.generatorBuyButton.setText(buyButtonText);
         holder.generatorBuyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,16 +108,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String generatorIconString = currentGen.getGeneratorIcon();
         holder.generatorIcon.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier(generatorIconString, "drawable", context.getPackageName())));
 
+
+
+        String cashToBeGained = "$" + String.format("%.2f", currentGen.getCashGainedWithProgress());
+        holder.progressBarLabel.setText(cashToBeGained);
+        holder.progressBarTimer.setText("00:00:00");
         final int timeForMoney = currentGen.getTimeToGetMoney();
         holder.generatorIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentGen.getCurrentProgress() == 0) {
                     new Thread(new Runnable() {
+                        int timeRemainingInMilis = timeForMoney + 1000;
                         @Override
                         public void run() {
                             while (currentGen.getCurrentProgress() < 100) {
                                 android.os.SystemClock.sleep(timeForMoney / 100);
+                                timeRemainingInMilis -= timeForMoney/100;
+                                int hours =   ((timeRemainingInMilis/1000)/60)%60;
+                                int minutes = Math.round(timeRemainingInMilis/1000)/60;
+                                int seconds = Math.round(timeRemainingInMilis/1000)%60;
+                                String timeLeft = String.format(Locale.getDefault(),"%02d:%02d:%02d",hours, minutes,seconds);
+                                holder.progressBarTimer.setText(timeLeft);
                                 currentGen.incrementCurrentProgress();
                                 holder.generatorProgressBar.setProgress(currentGen.getCurrentProgress());
                             }
@@ -126,6 +142,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             holder.generatorProgressBar.setProgress(currentGen.getCurrentProgress());
                             double cashAmount = currentGen.getCashGainedWithProgress();
                             CashGeneratorActivity.addCash(cashAmount);
+                            timeRemainingInMilis = timeForMoney;
+                            holder.progressBarTimer.setText("00:00:00");
                             updateDisplay();
                         }
                     }).start();
@@ -175,9 +193,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView generatorName;
         TextView generatorUpgradeLevel;
         TextView progressBarLabel;
+        TextView progressBarTimer;
         ProgressBar generatorProgressBar;
         Button generatorBuyButton;
         RelativeLayout parentLayout;
+
 
 
         public ViewHolder(View itemView){
@@ -187,8 +207,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             generatorUpgradeLevel = itemView.findViewById(R.id.generatorLevelTextView);
             generatorProgressBar = itemView.findViewById(R.id.generatorProgressBar);
             generatorBuyButton = itemView.findViewById(R.id.buyButton);
-            progressBarLabel = itemView.findViewById(R.id.progressBarLabel);
+            progressBarLabel = itemView.findViewById(R.id.progressBarCashLabel);
             parentLayout = itemView.findViewById(R.id.relativeLayout);
+            progressBarTimer = itemView.findViewById(R.id.progressBarTimerLabel);
         }
     }
 }

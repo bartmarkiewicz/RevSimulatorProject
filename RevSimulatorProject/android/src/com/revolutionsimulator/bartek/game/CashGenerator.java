@@ -16,13 +16,14 @@ public class CashGenerator {
 
     //variables for constructor -
     private boolean isBought;
-    private double initialCashGain;
+    private double baseCashGain;
     private String generatorName;
     private String generatorIcon;
     private int currentProgress = 0;
 
     private int timeToGetMoney;
     private double generatorUpgradeCost;
+    private double baseCost;
 
 
 
@@ -56,7 +57,7 @@ public class CashGenerator {
     }
 
     public double getCashGainedWithProgress() {
-        return initialCashGain*generatorLevel*0.50;
+        return baseCashGain*generatorLevel*0.9;
     }
 
     public int getGeneratorLevel() {
@@ -72,13 +73,13 @@ public class CashGenerator {
         this.currentProgress = currentProgress;
     }
 
-    public CashGenerator(boolean isBought, double initialCashGain, String generatorName, int timeToGetMoney, String generatorIcon) {
+    public CashGenerator(boolean isBought, double baseCashGain, double baseCost, String generatorName, int timeToGetMoney, String generatorIcon) {
         this.isBought = isBought;
-        this.initialCashGain = initialCashGain;
+        this.baseCashGain = baseCashGain;
         this.generatorName = generatorName;
         this.timeToGetMoney = timeToGetMoney;
         this.generatorIcon = generatorIcon;
-        this.cashGainedWithProgress = initialCashGain;
+        this.baseCost = baseCost;
         this.currentProgress = 0;
 
     }
@@ -90,7 +91,7 @@ public class CashGenerator {
     }
 
     public double getGeneratorUpgradeCost() {
-        generatorUpgradeCost=generatorLevel*0.20*cashGainedWithProgress;
+        generatorUpgradeCost=baseCost*Math.pow(1.15, generatorLevel);
         return generatorUpgradeCost;
     }
 }
