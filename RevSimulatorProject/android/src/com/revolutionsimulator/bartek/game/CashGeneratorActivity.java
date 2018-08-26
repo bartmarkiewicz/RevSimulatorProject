@@ -1,38 +1,57 @@
 package com.revolutionsimulator.bartek.game;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class CashGeneratorActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
+public class CashGeneratorActivity extends Activity {
     public static TextView cashDisplay;
 
     private ArrayList<CashGenerator> listOfGenerators = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     RecyclerView generatorListRecyclerView;
     public static double cashOwned = 0;
-
+    private LayoutInflater layoutInflater;
+    private PopupWindow popupWindow;
+    private ConstraintLayout constraintLayout;
     public void showPopupMenu(View v){
-        PopupMenu popupMenu = new PopupMenu(this, v);
-        popupMenu.setOnMenuItemClickListener(this);
-        popupMenu.inflate(R.menu.popup_menu);
-        popupMenu.show();
+        layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_menu, null);
+        popupWindow = new PopupWindow(container, getScreenHeight(), getScreenWidth(), true);
+        popupWindow.showAtLocation(constraintLayout, Gravity.NO_GRAVITY, 0,0);
+        /*container.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });*/
+
+
+
     }
 
     @Override
@@ -41,6 +60,7 @@ public class CashGeneratorActivity extends Activity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_cash_generator);
         initGeneratorRecyclerView();
         cashDisplay = findViewById(R.id.cashDisplay);
+        constraintLayout = findViewById(R.id.conLayout);
         updateDisplay();
     }
     public static void updateDisplay(){
@@ -64,8 +84,15 @@ public class CashGeneratorActivity extends Activity implements PopupMenu.OnMenuI
     public static void addCash(double amount){
         cashOwned += amount;
     }
+    public static int getScreenWidth() {
+        return Resources.getSystem().getDisplayMetrics().widthPixels;
+    }
 
-    @Override
+    public static int getScreenHeight() {
+        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
+
+    /*@Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.revActionsButton:
@@ -89,5 +116,5 @@ public class CashGeneratorActivity extends Activity implements PopupMenu.OnMenuI
             default:
                 return true;
         }
-    };
+    };*/
 }
