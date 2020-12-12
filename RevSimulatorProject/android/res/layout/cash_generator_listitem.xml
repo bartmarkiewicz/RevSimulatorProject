@@ -1,72 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@android:color/darker_gray">
+    android:layout_width="match_parent"
+    android:layout_height="98dp"
+    android:background="@drawable/cashgen_background"
+    android:gravity="center">
 
     <Button
         android:id="@+id/buyButton"
-        android:layout_width="78dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
         android:layout_alignTop="@+id/generatorLevelTextView"
-        android:layout_marginStart="11dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
         android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_light"
         android:textSize="11sp"
-        android:textColor="@android:color/holo_red_dark"/>
+        android:visibility="invisible"
+        tools:visiblity="visible" />
 
     <TextView
         android:id="@+id/generatorNameTextView"
-        android:layout_width="138dp"
-        android:layout_height="48dp"
+        android:layout_width="137dp"
+        android:layout_height="56dp"
         android:layout_below="@+id/generatorProgressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/buyButton"
         android:gravity="center"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        tools:visiblity="visible" />
 
     <TextView
         android:id="@+id/generatorLevelTextView"
-        android:layout_width="54dp"
-        android:layout_height="48dp"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
         android:layout_below="@+id/generatorProgressBar"
         android:layout_marginStart="-1dp"
         android:layout_toEndOf="@+id/generatorNameTextView"
         android:gravity="center"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark" />
-    />
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        tools:visiblity="visible" />
 
     <ImageView
         android:id="@+id/generatorImageView"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/generatorLevelTextView"
+        android:contentDescription="@string/image_representing_cash_generator"
         app:srcCompat="@android:color/holo_orange_light" />
 
     <ProgressBar
         android:id="@+id/generatorProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="270dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="281dp"
         android:layout_height="42dp"
-        android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/buyButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:max="100"
-        android:progress="0" />
+        android:progress="0"
+        android:visibility="invisible"
+        tools:visiblity="visible" />
 
 
     <TextView
         android:id="@+id/progressBarTimerLabel"
-        android:layout_width="126dp"
+        android:layout_width="141dp"
         android:layout_height="42dp"
         android:layout_above="@+id/buyButton"
         android:layout_alignEnd="@+id/generatorLevelTextView"
+        android:layout_marginEnd="0dp"
         android:gravity="center"
         android:textAlignment="gravity"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textColor="@android:color/black"
+        android:visibility="invisible"
+        tools:visiblity="visible" />
 
     <TextView
         android:id="@+id/progressBarCashLabel"
@@ -75,6 +95,22 @@
         android:layout_alignStart="@+id/buyButton"
         android:layout_alignTop="@+id/generatorProgressBar"
         android:gravity="center"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textColor="@android:color/black"
+        android:visibility="invisible"
+        tools:visiblity="visible" />
+
+    <Button
+        android:id="@+id/buyGeneratorBt"
+        style="?attr/buttonStyleSmall"
+        android:layout_width="280dp"
+        android:layout_height="97dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="@string/buy_generator"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="20sp"
+        tools:visibility="invisible" />
 
 </RelativeLayout>

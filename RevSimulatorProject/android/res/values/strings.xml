@@ -3,4 +3,12 @@
 
     <string name="app_name">Revolution Simulator</string>
     <string name="cashDisplay">Cash: </string>
+    <string name="button_opening_a_popup_menu">button opening a popup menu</string>
+    <string name="credits">Credits</string>
+    <string name="options">Options</string>
+    <string name="delete_all_saved_data">Delete all saved data</string>
+    <string name="todo">TODO</string>
+    <string name="image_representing_cash_generator">Image representing cash generator</string>
+    <string name="buy_generator">Buy generator</string>
+    <string name="getcash">getCash</string>
 </resources>
